@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import InputBox from './components/InputBox';
+import TodoList from './components/TodoList';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      todos: [
+        { id: uuidv4(), item: 'Chocolate' },
+        { id: uuidv4(), item: 'Strawberry' },
+        { id: uuidv4(), item: 'Whipped Cream' },
+      ],
+    };
+
+    this.addTodo = this.addTodo.bind(this);
+  }
+
+  addTodo(todo) {
+    this.setState(
+      {
+        todos: [...this.state.todos, { id: uuidv4(), item: todo }],
+      },
+      () => console.log(this.state.todos)
+    );
+  }
+
+  removeTodo(todo) {
+    this.setState(
+      {
+        todos: this.state.todos.filter((item) => item.id !== todo.id),
+      },
+      () => console.log(this.state.todos)
+    );
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Questify</h1>
+        <InputBox addTodo={this.addTodo} />
+        <TodoList todos={this.state.todos} />
+      </div>
+    );
+  }
 }
 
 export default App;
