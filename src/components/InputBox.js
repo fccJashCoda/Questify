@@ -1,50 +1,25 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-class InputBox extends Component {
-  constructor(props) {
-    super(props);
+function InputBox({ addTodo }) {
+  const [inputValue, setInputValue] = useState('');
 
-    this.state = {
-      inputValue: '',
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState(
-      {
-        inputValue: e.target.value,
-      },
-      () => console.log(this.state.inputValue)
-    );
-  }
-
-  handleClick(e) {
+  const handleChange = (e) => setInputValue(e.target.value);
+  const handleClick = (e) => {
     e.preventDefault();
-    this.props.addTodo(this.state.inputValue);
-    this.setState({
-      inputValue: '',
-    });
-  }
+    addTodo(inputValue);
+    setInputValue('');
+  };
 
-  render() {
-    return (
-      <div>
-        <form>
-          <input
-            type="text"
-            value={this.state.inputValue}
-            onChange={this.handleChange}
-          />
-          <button type="submit" onClick={this.handleClick}>
-            Add Todo
-          </button>
-        </form>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <form>
+        <input type="text" value={inputValue} onChange={handleChange} />
+        <button type="submit" onClick={handleClick}>
+          Add Todo
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default InputBox;
