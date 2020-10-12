@@ -17,20 +17,15 @@ function App() {
     setTodos([...todos, { id: uuidv4(), item: todo }]);
   };
 
-  const removeTodo = () => {
-    // this.setState(
-    //       {
-    //         todos: [...this.state.todos, { id: uuidv4(), item: todo }],
-    //       },
-    //       () => console.log(this.state.todos)
-    //     );
+  const removeTodo = (todo) => {
+    setTodos(todos.filter((item) => item.id !== todo.id));
   };
 
   return (
     <div className="App">
       <h1>Questify</h1>
       <InputBox addTodo={addTodo} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} removeTodo={removeTodo} />
     </div>
   );
 }

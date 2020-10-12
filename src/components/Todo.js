@@ -1,13 +1,10 @@
 import React from 'react';
 
 function Todo(props) {
-  const { todo } = props;
+  const { todo, removeTodo } = props;
 
-  console.log(todo);
-
-  function handleClick(item) {
-    console.log('Hi');
-    console.log(item);
+  function handleClick(todo) {
+    removeTodo(todo);
   }
 
   return (
