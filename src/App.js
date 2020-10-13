@@ -12,6 +12,18 @@ function App() {
     { id: uuidv4(), item: 'Whipped Cream' },
   ]);
 
+  // todo prototype
+  const quest = {
+    id: uuidv4(),
+    title: 'string',
+    description: 'string',
+    reward: 'string',
+    timeframe: new Date(),
+    started: new Date(),
+  };
+
+  console.log(quest);
+
   const addTodo = (todo) => {
     console.log(todo);
     setTodos([...todos, { id: uuidv4(), item: todo }]);

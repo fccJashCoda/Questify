@@ -9,8 +9,7 @@ function Todo(props) {
 
   return (
     <div>
-      {todo.item}
-      <button onClick={() => handleClick(todo)}>click</button>
+      {todo.item} <button onClick={() => handleClick(todo)}>click</button>
     </div>
   );
 }
