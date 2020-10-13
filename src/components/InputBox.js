@@ -9,11 +9,9 @@ function InputBox({ addTodo }) {
 
   const handleChange = (e) =>
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
-  // const handleClick = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputValue);
-    // addTodo(inputValue);
+    addTodo(inputValue);
     setInputValue({
       title: '',
       description: '',
