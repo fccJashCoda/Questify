@@ -22,25 +22,33 @@ function InputBox({ addTodo }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={inputValue.title}
-          name="title"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          value={inputValue.description}
-          name="description"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          value={inputValue.reward}
-          name="reward"
-          onChange={handleChange}
-        />
-        {/* <button type="submit" onClick={handleClick}> */}
+        <div>
+          <label>Title</label>
+          <input
+            type="text"
+            value={inputValue.title}
+            name="title"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Description</label>
+          <input
+            type="text"
+            value={inputValue.description}
+            name="description"
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>Reward</label>
+          <input
+            type="text"
+            value={inputValue.reward}
+            name="reward"
+            onChange={handleChange}
+          />
+        </div>
         <button type="submit">Add Todo</button>
       </form>
     </div>
