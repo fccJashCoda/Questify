@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function InputBox({ addTodo }) {
+function InputBox({ action }) {
   const [inputValue, setInputValue] = useState({
     title: '',
     description: '',
@@ -9,9 +9,10 @@ function InputBox({ addTodo }) {
 
   const handleChange = (e) =>
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTodo(inputValue);
+    action(inputValue);
     setInputValue({
       title: '',
       description: '',

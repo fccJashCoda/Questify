@@ -4,6 +4,9 @@ import './App.css';
 
 import InputBox from './components/InputBox';
 import TodoList from './components/TodoList';
+import OnePageApp from './components/OnePageApp';
+import Input from './components/Input';
+import InputForm from './components/InputForm';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -47,15 +50,28 @@ function App() {
     setTodos([...todos, { id: uuidv4(), ...todo, started: new Date() }]);
   };
 
+  const editTodo = (todo) => {
+    console.log(todo);
+  };
+
   const removeTodo = (todo) => {
     setTodos(todos.filter((item) => item.id !== todo.id));
   };
 
+  const goodstuff = (payload) => console.log('App', payload);
   return (
     <div className="App">
-      <h1>Questify</h1>
-      <InputBox addTodo={addTodo} />
-      <TodoList todos={todos} removeTodo={removeTodo} />
+      <InputForm
+        fields={{ name: 'Noodle', age: 1 }}
+        name="Noodle"
+        action={goodstuff}
+      />
+      <InputForm name="Cranberry" action={goodstuff} />
+      {/* <Input />
+      <OnePageApp /> */}
+      {/* <h1>Questify</h1>
+      <InputBox action={addTodo} />
+      <TodoList todos={todos} removeTodo={removeTodo} /> */}
     </div>
   );
 }
