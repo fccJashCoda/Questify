@@ -11,6 +11,8 @@ export class InputForm extends Component {
       // age: this.props.age || '',
     };
 
+    this.keys = Object.keys(this.state);
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,13 +28,19 @@ export class InputForm extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.action(this.state);
+    const teststate = {};
+    this.keys.map((key) => (teststate[key] = ''));
+    console.log(teststate);
     this.setState({
-      name: '',
-      age: '',
+      ...teststate,
     });
   }
 
   render() {
+    console.log(this.keys);
+    const teststate = {};
+    this.keys.map((key) => (teststate[key] = ''));
+    console.log('teststate', teststate);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -46,7 +54,7 @@ export class InputForm extends Component {
             value={this.state.age}
             action={this.handleChange}
           /> */}
-          {Object.keys(this.state).map((field) => (
+          {this.keys.map((field) => (
             <InputTest
               name={field}
               value={this.state[field]}
@@ -60,4 +68,4 @@ export class InputForm extends Component {
   }
 }
 
-export default InputForm;
+export default React.memo(InputForm);
