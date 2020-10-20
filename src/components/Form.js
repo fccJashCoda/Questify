@@ -14,6 +14,9 @@ function Form(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // ----
+    // Action placeholder
+    // ----
     const resetFields = {};
     keys.forEach((key) => (resetFields[key] = ''));
     setFields({
@@ -26,8 +29,13 @@ function Form(props) {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Form test</h3>
-      {keys.map((key) => (
-        <InputBox name={key} value={fields[key]} action={handleChange} />
+      {keys.map((key, index) => (
+        <InputBox
+          key={index}
+          name={key}
+          value={fields[key]}
+          action={handleChange}
+        />
       ))}
       <button type="submit">Submit</button>
     </form>
