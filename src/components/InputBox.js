@@ -1,57 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function InputBox({ action }) {
-  const [inputValue, setInputValue] = useState({
-    title: '',
-    description: '',
-    reward: '',
-  });
-
-  const handleChange = (e) =>
-    setInputValue({ ...inputValue, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    action(inputValue);
-    setInputValue({
-      title: '',
-      description: '',
-      reward: '',
-    });
-  };
-
+function InputBox({ action, name, ...rest }) {
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Title</label>
-          <input
-            type="text"
-            value={inputValue.title}
-            name="title"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Description</label>
-          <input
-            type="text"
-            value={inputValue.description}
-            name="description"
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label>Reward</label>
-          <input
-            type="text"
-            value={inputValue.reward}
-            name="reward"
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Add Todo</button>
-      </form>
+      <label>{name} </label>
+      <input
+        type="text"
+        name={name}
+        {...rest}
+        onChange={(e) => action(e.target.name, e.target.value)}
+      />
     </div>
   );
 }

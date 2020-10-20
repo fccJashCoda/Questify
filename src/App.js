@@ -4,9 +4,8 @@ import './App.css';
 
 import InputBox from './components/InputBox';
 import TodoList from './components/TodoList';
-import OnePageApp from './components/OnePageApp';
-import Input from './components/Input';
 import InputForm from './components/InputForm';
+import Form from './components/Form';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -61,14 +60,13 @@ function App() {
   const goodstuff = (payload) => console.log('App', payload);
   return (
     <div className="App">
-      <InputForm
+      <Form fields={{ name: 'Noodle', age: 1 }} />
+      {/* <InputForm
         fields={{ name: 'Noodle', age: 1 }}
         name="Noodle"
         action={goodstuff}
-      />
-      <InputForm name="Cranberry" action={goodstuff} />
-      {/* <Input />
-      <OnePageApp /> */}
+      /> */}
+      {/* <InputForm name="Cranberry" action={goodstuff} /> */}
       {/* <h1>Questify</h1>
       <InputBox action={addTodo} />
       <TodoList todos={todos} removeTodo={removeTodo} /> */}
