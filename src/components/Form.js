@@ -10,13 +10,16 @@ function Form(props) {
       ...fields,
       [field]: value,
     });
+    // need to add input types to ease form validation
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // ----
-    // Action placeholder
-    // ----
+    props.action({
+      ...fields,
+    });
+
+    // console.log({ ...fields });
     const resetFields = {};
     keys.forEach((key) => (resetFields[key] = ''));
     setFields({
@@ -24,8 +27,6 @@ function Form(props) {
     });
   };
 
-  console.log(keys);
-  console.log(fields);
   return (
     <form onSubmit={handleSubmit}>
       <h3>Form test</h3>

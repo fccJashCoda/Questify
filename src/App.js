@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
-import InputBox from './components/InputBox';
 import TodoList from './components/TodoList';
-import InputForm from './components/InputForm';
 import Form from './components/Form';
 
 function App() {
@@ -42,10 +40,8 @@ function App() {
     started: new Date(),
   };
 
-  console.log(quest);
-
   const addTodo = (todo) => {
-    console.log(todo);
+    console.log('todo', todo);
     setTodos([...todos, { id: uuidv4(), ...todo, started: new Date() }]);
   };
 
@@ -57,19 +53,14 @@ function App() {
     setTodos(todos.filter((item) => item.id !== todo.id));
   };
 
-  const goodstuff = (payload) => console.log('App', payload);
   return (
     <div className="App">
-      <Form fields={{ name: 'Noodle', age: 1 }} />
-      {/* <InputForm
-        fields={{ name: 'Noodle', age: 1 }}
-        name="Noodle"
-        action={goodstuff}
-      /> */}
-      {/* <InputForm name="Cranberry" action={goodstuff} /> */}
-      {/* <h1>Questify</h1>
-      <InputBox action={addTodo} />
-      <TodoList todos={todos} removeTodo={removeTodo} /> */}
+      <h1>Questify</h1>
+      <Form
+        fields={{ title: 'Noodle', description: '', reward: '' }}
+        action={addTodo}
+      />
+      <TodoList todos={todos} removeTodo={removeTodo} />
     </div>
   );
 }
