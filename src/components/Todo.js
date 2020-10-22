@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -8,15 +8,15 @@ const Card = styled.div`
 `;
 
 function Todo(props) {
-  const { todo, removeTodo } = props;
-
-  function handleClick(todo) {
-    removeTodo(todo);
-  }
+  const [toggle, setToggle] = useState(false);
+  const { todo, removeTodo, editTodo } = props;
 
   return (
     <Card>
-      {todo.title} <button onClick={() => handleClick(todo)}>click</button>
+      {todo.title} <button onClick={() => removeTodo(todo)}>click</button>{' '}
+      <button onClick={() => editTodo(todo)}>edit</button>
+      <button onClick={() => setToggle(!toggle)}>Toggle</button>
+      {toggle && <h4>EASY</h4>}
     </Card>
   );
 }

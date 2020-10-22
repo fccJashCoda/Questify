@@ -31,22 +31,29 @@ function App() {
   ]);
 
   // todo prototype
-  const quest = {
-    id: uuidv4(),
-    title: 'string',
-    description: 'string',
-    reward: 'string',
-    timeframe: new Date(),
-    started: new Date(),
-  };
+  // const quest = {
+  //   id: uuidv4(),
+  //   title: 'string',
+  //   description: 'string',
+  //   reward: 'string',
+  //   timeframe: new Date(),
+  //   started: new Date(),
+  // };
 
   const addTodo = (todo) => {
-    console.log('todo', todo);
     setTodos([...todos, { id: uuidv4(), ...todo, started: new Date() }]);
   };
 
-  const editTodo = (todo) => {
-    console.log(todo);
+  const editTodo = (todo, payload = {}) => {
+    const editedTodos = todos;
+    let editTodo = editedTodos.find((item) => item.id === todo.id);
+
+    console.log(editTodo);
+    Object.keys(payload).forEach((key) => {
+      editTodo[key] = payload[key];
+    });
+    console.log(editTodo);
+    setTodos([...editedTodos]);
   };
 
   const removeTodo = (todo) => {
@@ -60,7 +67,7 @@ function App() {
         fields={{ title: 'Noodle', description: '', reward: '' }}
         action={addTodo}
       />
-      <TodoList todos={todos} removeTodo={removeTodo} />
+      <TodoList todos={todos} removeTodo={removeTodo} editTodo={editTodo} />
     </div>
   );
 }
