@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
-import TodoList from './components/TodoList';
+import QuestLog from './components/QuestLog';
 import Form from './components/Form';
 
 function App() {
-  const [todos, setTodos] = useState([
+  const [quests, setQuests] = useState([
     {
       id: uuidv4(),
       title: 'Chocolate',
@@ -30,7 +30,7 @@ function App() {
     },
   ]);
 
-  // todo prototype
+  // quest prototype
   // const quest = {
   //   id: uuidv4(),
   //   title: 'string',
@@ -40,24 +40,24 @@ function App() {
   //   started: new Date(),
   // };
 
-  const addTodo = (todo) => {
-    setTodos([...todos, { id: uuidv4(), ...todo, started: new Date() }]);
+  const addQuest = (quest) => {
+    setQuests([...quests, { id: uuidv4(), ...quest, started: new Date() }]);
   };
 
-  const editTodo = (todo, payload = {}) => {
-    const editedTodos = todos;
-    let editTodo = editedTodos.find((item) => item.id === todo.id);
+  const editQuest = (quest, payload = {}) => {
+    const editedQuests = quests;
+    let editQuest = editedQuests.find((item) => item.id === quest.id);
 
-    console.log(editTodo);
+    console.log(editQuest);
     Object.keys(payload).forEach((key) => {
-      editTodo[key] = payload[key];
+      editQuest[key] = payload[key];
     });
-    console.log(editTodo);
-    setTodos([...editedTodos]);
+    console.log(editQuest);
+    setQuests([...editedQuests]);
   };
 
-  const removeTodo = (todo) => {
-    setTodos(todos.filter((item) => item.id !== todo.id));
+  const removeQuest = (quest) => {
+    setQuests(quests.filter((item) => item.id !== quest.id));
   };
 
   return (
@@ -65,9 +65,13 @@ function App() {
       <h1>Questify</h1>
       <Form
         fields={{ title: 'Noodle', description: '', reward: '' }}
-        action={addTodo}
+        action={addQuest}
       />
-      <TodoList todos={todos} removeTodo={removeTodo} editTodo={editTodo} />
+      <QuestLog
+        quests={quests}
+        removeQuest={removeQuest}
+        editQuest={editQuest}
+      />
     </div>
   );
 }

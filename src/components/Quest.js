@@ -9,19 +9,19 @@ const Card = styled.div`
   margin-bottom: 0.5em;
 `;
 
-function Todo(props) {
+function Quest(props) {
   const [toggle, setToggle] = useState(false);
-  const { todo, removeTodo, editTodo } = props;
-  const { title, description, reward } = todo;
+  const { quest, removeQuest, editQuest } = props;
+  const { title, description, reward } = quest;
 
   const middleAgent = (stuff) => {
     setToggle(!toggle);
-    editTodo(todo, stuff);
+    editQuest(quest, stuff);
   };
-  console.log(`${title} with id ${todo.id} rerenders`);
+  console.log(`${title} with id ${quest.id} rerenders`);
   return (
     <Card>
-      {title} <button onClick={() => removeTodo(todo)}>click</button>{' '}
+      {title} <button onClick={() => removeQuest(quest)}>click</button>{' '}
       <button onClick={() => setToggle(!toggle)}>Edit</button>
       {toggle && (
         <Form fields={{ title, description, reward }} action={middleAgent} />
@@ -30,4 +30,4 @@ function Todo(props) {
   );
 }
 
-export default React.memo(Todo);
+export default React.memo(Quest);
