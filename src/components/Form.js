@@ -15,9 +15,13 @@ function Form(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.action({
-      ...fields,
-    });
+    const { action } = props;
+
+    if (action) {
+      action({
+        ...fields,
+      });
+    }
 
     // console.log({ ...fields });
     const resetFields = {};
