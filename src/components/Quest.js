@@ -12,17 +12,27 @@ const Card = styled.div`
 function Quest(props) {
   const [toggle, setToggle] = useState(false);
   const { quest, removeQuest, editQuest } = props;
-  const { title, description, reward } = quest;
+  const { id, title, description, reward, started } = quest;
 
   const middleAgent = (stuff) => {
     setToggle(!toggle);
     editQuest(quest, stuff);
   };
-  console.log(`${title} with id ${quest.id} rerenders`);
+
+  console.log(id, 'rendering');
+
   return (
     <Card>
-      {title} <button onClick={() => removeQuest(quest)}>click</button>{' '}
-      <button onClick={() => setToggle(!toggle)}>Edit</button>
+      <small>{id}</small>
+      <h5>{title}</h5>
+      <p>description: {description}</p>
+      <p>reward: {reward}</p>
+      <p>start time: {started.toLocaleTimeString()}</p>
+      <p>start date: {started.toLocaleDateString()}</p>
+      <div>
+        <button onClick={() => removeQuest(quest)}>click</button>{' '}
+        <button onClick={() => setToggle(!toggle)}>Edit</button>
+      </div>
       {toggle && (
         <Form fields={{ title, description, reward }} action={middleAgent} />
       )}

@@ -12,6 +12,7 @@ function App() {
       title: 'Chocolate',
       description: '',
       reward: '',
+      status: 'in progress',
       started: new Date(),
     },
     {
@@ -19,6 +20,7 @@ function App() {
       title: 'Strawberry',
       description: '',
       reward: '',
+      status: 'in progress',
       started: new Date(),
     },
     {
@@ -26,6 +28,7 @@ function App() {
       title: 'Whipped Cream',
       description: '',
       reward: '',
+      status: 'in progress',
       started: new Date(),
     },
   ]);
@@ -41,19 +44,30 @@ function App() {
   // };
 
   const addQuest = (quest) => {
-    setQuests([...quests, { id: uuidv4(), ...quest, started: new Date() }]);
+    if (quest.title) {
+      setQuests([{ id: uuidv4(), ...quest, started: new Date() }, ...quests]);
+    }
   };
 
   const editQuest = (quest, payload = {}) => {
-    const editedQuests = quests;
+    console.log(payload);
+    if (!payload.title) return;
+    const editedQuests = [...quests];
     let editQuest = editedQuests.find((item) => item.id === quest.id);
 
-    console.log(editQuest);
     Object.keys(payload).forEach((key) => {
       editQuest[key] = payload[key];
     });
-    console.log(editQuest);
-    setQuests([...editedQuests]);
+
+    // Nani!?
+    // the state changes without setQuests
+
+    // if (editQuest.title !== '') {
+    //   console.log('editing');
+    //   console.log(editQuest);
+    //   console.log('title', editQuest.title);
+    //   setQuests([...editedQuests]);
+    // }
   };
 
   const removeQuest = (quest) => {
