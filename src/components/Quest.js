@@ -27,8 +27,8 @@ function Quest(props) {
       <h5>{title}</h5>
       <p>description: {description}</p>
       <p>reward: {reward}</p>
-      <p>start time: {started.toLocaleTimeString()}</p>
-      <p>start date: {started.toLocaleDateString()}</p>
+      <p>start time: {started}</p>
+      <p>start date: {started}</p>
       <div>
         <button onClick={() => removeQuest(quest)}>click</button>{' '}
         <button onClick={() => setToggle(!toggle)}>Edit</button>

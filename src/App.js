@@ -13,7 +13,7 @@ function App() {
       description: '',
       reward: '',
       status: 'in progress',
-      started: new Date(),
+      started: new Date().toLocaleString(),
     },
     {
       id: uuidv4(),
@@ -21,7 +21,7 @@ function App() {
       description: '',
       reward: '',
       status: 'in progress',
-      started: new Date(),
+      started: new Date().toLocaleString(),
     },
     {
       id: uuidv4(),
@@ -29,7 +29,7 @@ function App() {
       description: '',
       reward: '',
       status: 'in progress',
-      started: new Date(),
+      started: new Date().toLocaleString(),
     },
   ]);
 
@@ -50,14 +50,27 @@ function App() {
   };
 
   const editQuest = (quest, payload = {}) => {
-    console.log(payload);
     if (!payload.title) return;
-    const editedQuests = [...quests];
+    const editedQuests = JSON.parse(JSON.stringify(quests));
+    console.log(quests);
+    // let targetQuest = editedQuests.find((item) => item.id === quest.id);
     let editQuest = editedQuests.find((item) => item.id === quest.id);
+    // editQuest.title = payload.title;
+    // console.log('editquest', editQuest);
+    // console.log('payload', payload);
 
     Object.keys(payload).forEach((key) => {
       editQuest[key] = payload[key];
     });
+
+    // editQuest = { ...editQuest, ...payload };
+    // let newQuest = Object.assign({}, editQuest, payload);
+    // editQuest = newQuest;
+    // editQuest = { ...editQuest, ...payload };
+    console.log(editQuest);
+    console.log(editedQuests);
+
+    setQuests(editedQuests);
 
     // Nani!?
     // the state changes without setQuests
