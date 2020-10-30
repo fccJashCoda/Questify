@@ -33,16 +33,6 @@ function App() {
     },
   ]);
 
-  // quest prototype
-  // const quest = {
-  //   id: uuidv4(),
-  //   title: 'string',
-  //   description: 'string',
-  //   reward: 'string',
-  //   timeframe: new Date(),
-  //   started: new Date(),
-  // };
-
   const addQuest = (quest) => {
     if (quest.title) {
       setQuests([{ id: uuidv4(), ...quest, started: new Date() }, ...quests]);
@@ -52,35 +42,13 @@ function App() {
   const editQuest = (quest, payload = {}) => {
     if (!payload.title) return;
     const editedQuests = JSON.parse(JSON.stringify(quests));
-    console.log(quests);
-    // let targetQuest = editedQuests.find((item) => item.id === quest.id);
     let editQuest = editedQuests.find((item) => item.id === quest.id);
-    // editQuest.title = payload.title;
-    // console.log('editquest', editQuest);
-    // console.log('payload', payload);
 
     Object.keys(payload).forEach((key) => {
       editQuest[key] = payload[key];
     });
 
-    // editQuest = { ...editQuest, ...payload };
-    // let newQuest = Object.assign({}, editQuest, payload);
-    // editQuest = newQuest;
-    // editQuest = { ...editQuest, ...payload };
-    console.log(editQuest);
-    console.log(editedQuests);
-
     setQuests(editedQuests);
-
-    // Nani!?
-    // the state changes without setQuests
-
-    // if (editQuest.title !== '') {
-    //   console.log('editing');
-    //   console.log(editQuest);
-    //   console.log('title', editQuest.title);
-    //   setQuests([...editedQuests]);
-    // }
   };
 
   const removeQuest = (quest) => {
